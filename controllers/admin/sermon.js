@@ -103,7 +103,7 @@ export const getAllSermonsAdmin = async (req, res) => {
     const offset = (page - 1) * itemsPerPage;
 
     const result = await pool.query(
-      'SELECT * FROM sermons ORDER BY date DESC LIMIT $1 OFFSET $2',
+      'SELECT * FROM sermons ORDER BY "createdAt" DESC LIMIT $1 OFFSET $2',
       [itemsPerPage, offset]
     );
 

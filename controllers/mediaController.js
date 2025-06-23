@@ -15,7 +15,7 @@ export const getAllSermons = async (req, res) => {
     const offset = (page - 1) * itemsPerPage;
 
     const result = await pool.query(
-      'SELECT * FROM sermons ORDER BY date DESC LIMIT $1 OFFSET $2',
+      'SELECT * FROM sermons ORDER BY "createdAt" DESC LIMIT $1 OFFSET $2',
       [itemsPerPage, offset]
     );
 
@@ -45,7 +45,7 @@ export const getSingleSermon = async (req, res) => {
   try {
     // Fetch the sermon by ID and the latest 4 sermons in parallel
     const sermonQuery = pool.query('SELECT * FROM sermons WHERE id = $1', [id]);
-    const latestSermonsQuery = pool.query('SELECT * FROM sermons ORDER BY date DESC LIMIT 5');
+    const latestSermonsQuery = pool.query('SELECT * FROM sermons ORDER BY "createdAt" DESC LIMIT 5');
 
     // Await both queries
     const [sermonResult, latestSermonsResult] = await Promise.all([sermonQuery, latestSermonsQuery]);
@@ -84,7 +84,7 @@ export const getAllNowword = async (req, res) => {
     const offset = (page - 1) * itemsPerPage;
 
     const result = await pool.query(
-      'SELECT * FROM nowword ORDER BY date DESC LIMIT $1 OFFSET $2',
+      'SELECT * FROM nowword ORDER BY "createdAt" DESC LIMIT $1 OFFSET $2',
       [itemsPerPage, offset]
     );
 
@@ -116,7 +116,7 @@ export const getAllZoeRecord = async (req, res) => {
     const offset = (page - 1) * itemsPerPage;
 
     const result = await pool.query(
-      'SELECT * FROM zoe_record ORDER BY date DESC LIMIT $1 OFFSET $2',
+      'SELECT * FROM zoe_record ORDER BY "createdAt" DESC LIMIT $1 OFFSET $2',
       [itemsPerPage, offset]
     );
 

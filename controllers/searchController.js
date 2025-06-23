@@ -10,7 +10,7 @@ export async function searchSermon (req) {
     `
     SELECT * FROM sermons 
     WHERE title ILIKE $1
-    ORDER BY date DESC 
+    ORDER BY "createdAt" DESC 
     LIMIT $2 OFFSET $3
     `,
     [`%${searchTerm}%`, itemsPerPage, offset]
@@ -45,7 +45,7 @@ export async function searchZoeRecord (req) {
     `
     SELECT * FROM zoe_record 
     WHERE title ILIKE $1
-    ORDER BY date DESC 
+    ORDER BY "createdAt" DESC 
     LIMIT $2 OFFSET $3
     `,
     [`%${searchTerm}%`, itemsPerPage, offset]
@@ -80,7 +80,7 @@ export async function searchNowword (req) {
     `
     SELECT * FROM nowword 
     WHERE title ILIKE $1
-    ORDER BY date DESC 
+    ORDER BY "createdAt" DESC 
     LIMIT $2 OFFSET $3
     `,
     [`%${searchTerm}%`, itemsPerPage, offset]
